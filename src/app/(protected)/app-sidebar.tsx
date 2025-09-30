@@ -3,7 +3,7 @@
 "use client"
 import { Button } from '@/components/ui/button'
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar'
-// import useProject from '@/hooks/use-project'
+import useProject from '@/hooks/use-project'
 import { cn } from '@/lib/utils'
 import { Bot, Code, CreditCard, LayoutDashboard, Plus, Presentation, ScanEye, Shield } from 'lucide-react'
 import Image from 'next/image'
@@ -45,29 +45,28 @@ const items = [
   },
 ]
 
-const projects = [
-  {
-    name: "Project 1"
-  },
-  {
-    name: "Project 2"
-  },
-  {
-    name: "Project 3"
-  }
-]
+// const projects = [
+//   {
+//     name: "Project 1"
+//   },
+//   {
+//     name: "Project 2"
+//   },
+//   {
+//     name: "Project 3"
+//   }
+// ]
 
 function AppSidebar() {
   const pathname = usePathname()
   const { open } = useSidebar()
-  // const {projects, projectId, setProjectId} = useProject()
+  const {projects, projectId, setProjectId} = useProject()
   
   return (
 
     <Sidebar collapsible='icon' variant='floating'>
       <SidebarHeader>
         <div className=" flex items-center gap-2">
-          {/* <Image src={'/logo.png'} alt="Logo" width={40} height={40} /> */}
           {
             open ? (<h1 className=" ml-2 text-2xl font-bold text-primary/80 mt-1">
               Congming AI
@@ -115,13 +114,12 @@ function AppSidebar() {
                   <SidebarMenuItem key={index}>
                     <SidebarMenuButton asChild>
                       <div onClick={ () => {
-                        // setProjectId(project.id)
+                        setProjectId(project.id)
                       }}>
                         <div className={cn(
                           'rounded-sm size-6 border flex items-center justify-center text-sm bg-white text-primary',
                           {
-                            // 'bg-primary text-white': {project.id === projectId}
-                              // 'bg-primary text-white': true
+                            'bg-primary text-white': project.id === projectId
                           }
                         )}>
                           {project.name[0]}
