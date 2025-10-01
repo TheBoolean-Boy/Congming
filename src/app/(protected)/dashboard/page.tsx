@@ -5,7 +5,7 @@ import { ExternalLink, Github } from 'lucide-react'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import React from 'react'
-// import CommitLog from './commit-log'
+import CommitLog from './commit-log'
 // import AskQuestionCard from './ask-question-card'
 // import MeetingCard from './meeting-card'
 
@@ -51,8 +51,7 @@ const DashboardPage = () => {
       </div>
 
       <div className='mt-8'>
-        {/* <CommitLog /> */}
-        CommitLog
+        <CommitLog />
       </div>
 
     </div>
