@@ -35,13 +35,13 @@ export default function FAQsTwo() {
         },
         {
             id: 'item-6',
-            question: 'What if I run of credits?',
+            question: 'What if I run out of credits?',
             answer: 'Congming offers a credit based product usage system. If you run out of credits, buy credits only according to your need. Besides it offers a generous 300 free credits for all new signups... maybe use another email ahahah.',
         },
     ]
 
     return (
-        <section className="py-16 md:py-24">
+        <section id='faq' className="py-16 md:py-24">
             <div className="mx-auto max-w-5xl px-4 md:px-6">
                 <div className="mx-auto max-w-xl text-center">
                     <h2 className="text-balance text-3xl font-bold md:text-4xl lg:text-5xl">Frequently Asked Questions</h2>

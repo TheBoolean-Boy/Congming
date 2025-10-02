@@ -67,6 +67,10 @@ function AppSidebar() {
     <Sidebar collapsible='icon' variant='floating'>
       <SidebarHeader>
         <div className=" flex items-center gap-2">
+          <Link
+          href={'/'}
+          >
+
           {
             open ? (<h1 className=" ml-2 text-2xl font-bold text-primary/80 mt-1">
               Congming AI
@@ -74,7 +78,7 @@ function AppSidebar() {
               C
             </h1>) 
           }
-
+          </Link>
         </div>
       </SidebarHeader>
 

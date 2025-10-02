@@ -14,7 +14,7 @@ export default async function Home() {
     <div >
       <HeroHeader />
       <HeroSection />
-      <Features />
+      <Features  />
       {/* <ContentSection /> */}
       <FAQsTwo />
       <FooterSection />

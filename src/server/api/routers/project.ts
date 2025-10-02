@@ -90,7 +90,61 @@ export const projectRouter = createTRPCRouter({
       }
     })
     return questions
-  })
+  }),
+
+  uploadMeeting: protectedProcedure.input(z.object({
+    projectId: z.string(),
+    meetingUrl: z.string(),
+    name: z.string()
+  })).mutation( async({ctx, input}) => {
+    const meeting = await ctx.db.meeting.create({
+      data:{
+        name:input.name,
+        projectId: input.projectId,
+        meetingUrl: input.meetingUrl,
+        status: 'PROCESSING'
+      }
+    })
+
+    return meeting
+  }),
+
+   getMeeting: protectedProcedure.input(z.object({
+    projectId: z.string()
+  })).query( async({ctx,input}) => {
+    return ctx.db.meeting.findMany({
+      where:{
+        projectId: input.projectId
+      },
+      include:{
+        issues: true
+      }
+    })
+  }),
+
+  deleteMeeting: protectedProcedure.input(z.object({ meetingId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.meeting.delete(
+        {
+          where: {
+            id: input.meetingId
+          }
+        })
+    }),
+
+  getMeetingById: protectedProcedure.input(
+    z.object({ meetingId: z.string() })
+  )
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.meeting.findUnique(
+        {
+          where:
+          {
+            id: input.meetingId
+          },
+          include: { issues: true }
+        });
+    }),
 
 
 })

@@ -8,10 +8,11 @@ import { cn } from '@/lib/utils'
 import { UserButton, useUser } from '@clerk/nextjs'
 
 const menuItems = [
-    { name: 'About', href: '#link' },
-    { name: 'Features', href: '#link' },
-    // { name: 'Pricing', href: '#link' },
-    { name: 'FAQ', href: '#link' },
+    { name: 'About', href: '/' },
+    { name: 'feartures', href: '/#features' },
+    { name: 'Dashboard', href: '/dashboard' },
+    { name: 'Projects', href: '/create' },
+    { name: 'FAQ', href: '/#faq' },
 ]
 
 export const HeroHeader = () => {
