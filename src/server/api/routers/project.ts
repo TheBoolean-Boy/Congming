@@ -130,7 +130,7 @@ export const projectRouter = createTRPCRouter({
             id: input.meetingId
           }
         })
-    }),
+  }),
 
   getMeetingById: protectedProcedure.input(
     z.object({ meetingId: z.string() })
@@ -145,6 +145,8 @@ export const projectRouter = createTRPCRouter({
           include: { issues: true }
         });
     }),
+
+    
 
 
 })

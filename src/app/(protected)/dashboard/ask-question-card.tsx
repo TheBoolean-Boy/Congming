@@ -132,7 +132,7 @@ const AskQuestionCard = () => {
               onChange={e => setQuestion(e.target.value)}
             />
             <div className='h-4'></div>
-            <Button type='submit' disabled={loading}>
+            <Button type='submit' disabled={loading} className=' hover:scale-102 cursor-pointer'>
               {loading ? 'Processing...' : 'Ask CongMing'}
               {loading && <LoaderIcon className=' animate-spin' />}
             </Button>

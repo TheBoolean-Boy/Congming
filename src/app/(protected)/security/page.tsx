@@ -51,7 +51,7 @@ const CodebaseScanCard = () => {
     <Card className='col-span-2 flex flex-col items-center justify-center py-4'>
       {!isScanning && (
         <>
-          <Code className="h-10 w-10 animate-bounce text-blue-600" />
+          <Code className="h-10 w-10 animate-bounce text-cyan-600" />
           <h3 className="mt-1 text-sm font-semibold text-gray-900">
             Scan Codebase
           </h3>
@@ -62,7 +62,7 @@ const CodebaseScanCard = () => {
           </p>
           <div className="mt-3">
             <Button onClick={handleScan} disabled={isScanning}
-            
+            className='hover:scale-102 cursor-pointer'
             >
               <Search className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
               Start Scan
@@ -92,7 +92,7 @@ const CodebaseScanCard = () => {
               />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-sm font-semibold text-blue-600">{progress}%</span>
+              <span className="text-sm font-semibold text-cyan-600">{progress}%</span>
             </div>
           </div>
           

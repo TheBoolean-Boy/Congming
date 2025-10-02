@@ -72,7 +72,7 @@ const MeetingCard = () => {
             Max file size: 50Mb
           </p>
           <div className="mt-1">
-            <Button disabled={isUploading}>
+            <Button disabled={isUploading} className=' cursor-pointer hover:scale-102 hover:bg-black'>
               <Upload className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
               Upload Meeting Audio
               <input className="hidden" {...getInputProps()} />

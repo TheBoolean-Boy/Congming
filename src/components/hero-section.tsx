@@ -12,11 +12,9 @@ export default function HeroSection() {
   const { user } = useUser()
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-      {/* Top announcement banner */}
       <div className="mb-8 sm:mb-12 lg:mb-16 mt-6">
         <Link href={'/dashboard'} >
           <ElectricBorder
-            // color="#7df9ff"
             color="#FF0022"
             speed={1}
             chaos={0.5}
@@ -24,7 +22,8 @@ export default function HeroSection() {
             style={{ borderRadius: 16 }}
           >
 
-            <button className="flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border border-gray-200 rounded-full shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+            
+            <Button variant={'ghost'} className=" py-2 px-5 w-full sm:w-auto cursor-pointer hover:scale-105">
               <span className="text-xs sm:text-sm text-gray-700">
                 {user ? 'Use your free 300 credits' : 'SignUp to get free 300 credits'}
               </span>
@@ -41,7 +40,10 @@ export default function HeroSection() {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-            </button>
+            </Button>
+
+
+            
           </ElectricBorder>
         </Link>
       </div>
@@ -60,26 +62,8 @@ export default function HeroSection() {
             threshold={0.1}
             rootMargin="-100px"
             textAlign="center"
-          // onLetterAnimationComplete={handleAnimationComplete}
           />
 
-          {/* <br className="hidden sm:block" />
-          <span className="sm:inline block mt-2 sm:mt-0"> 
-            <SplitText
-            text="with the help of AI Agents"
-            className="text-6xl font-semibold text-center"
-            delay={50}
-            duration={0.4}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-            // onLetterAnimationComplete={handleAnimationComplete}
-          />
-            </span> */}
         </h1>
 
         <p className="text-base sm:text-lg lg:text-xl text-gray-600 mb-8 sm:mb-10 lg:mb-12 max-w-3xl mx-auto px-2">
@@ -91,19 +75,28 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <Link
             href={'/dashboard'}
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto "
           >
-            <Button className="w-full sm:w-auto">
+            <Button className="w-full sm:w-auto cursor-pointer">
               {user ? 'Dashboard' : 'SignIn'}
               <ArrowRight className="ml-2" />
             </Button>
           </Link>
 
-          <Link href={'#'} className="w-full sm:w-auto">
-            <Button variant={'ghost'} className="w-full sm:w-auto">
+          <ElectricBorder
+            color="#39FF14"
+            // color="#FF0022"
+            speed={1}
+            chaos={0.5}
+            thickness={2}
+            style={{ borderRadius: 16 }}
+          >
+          <Link href={'#'} className="w-full sm:w-auto ">
+            <Button variant={'ghost'} className="w-full sm:w-auto cursor-pointer hover:scale-105">
               Check Out Demo Video
             </Button>
           </Link>
+          </ElectricBorder>
         </div>
       </div>
     </div>
