@@ -40,6 +40,7 @@ export async function askQuestion(question: string, projectId?: string) {
     LIMIT 5
   ` as { fileName: string; sourceCode: string; summary: string }[]
 
+  // console.log(result)
   let context = ''
   for (const doc of result) {
     context += `source: ${doc.fileName} \n code content: ${doc.sourceCode} \n summary of file: ${doc.summary}\n\n`
