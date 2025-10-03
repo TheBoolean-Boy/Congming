@@ -56,7 +56,7 @@ const CodebaseScanCard = () => {
             Scan Codebase
           </h3>
           <p className="mt-0 text-center text-sm text-gray-500">
-            Analyze your entire codebase to identify patterns, dependencies, and potential issues.
+            Analyze your entire codebase to identify faulty patterns, dependencies, and potential issues.
             <br />
             Get insights into your project structure and code quality.
           </p>
@@ -73,7 +73,6 @@ const CodebaseScanCard = () => {
 
       {isScanning && (
         <div className='flex flex-col items-center'>
-          {/* Custom circular progress */}
           <div className="relative size-20">
             <svg className="size-20 -rotate-90" viewBox="0 0 36 36">
               <path
