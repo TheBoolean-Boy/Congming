@@ -148,7 +148,7 @@ Respond strictly in JSON format with a single top-level key "issues" containing 
       if (issue.risk_level === 'high') {
         const professionalTitle = `[Security][High] ${issue.title}`
         const res = await createIssueTool(githubUrl, professionalTitle, issue.body)
-        console.log(res)
+        // console.log(res)
         if (res?.status === 201) console.log(`GitHub issue created: ${professionalTitle}`)
       }
     }
