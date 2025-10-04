@@ -156,7 +156,7 @@ export async function summariseCode(doc: Document) {
     })
     return response.text 
   } catch (error) {
-    return ''
+    return 'empty'
   }
 }
 

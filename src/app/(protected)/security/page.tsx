@@ -18,6 +18,8 @@ const CodebaseScanCard = () => {
     setIsScanning(true)
     setProgress(0)
     setStatus('success')
+
+    if(!project?.id)return
     
     try {
 

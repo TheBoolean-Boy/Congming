@@ -18,13 +18,15 @@ const CodebaseScanCard = () => {
     setIsScanning(true)
     setProgress(0)
     setStatus('success')
+
+    if(!project?.id)return
     
     try {
 
       await refactorAgent(project?.githubUrl!, projectId)
       for (let i = 0; i <= 100; i += 10) {
         setProgress(i)
-        await new Promise(resolve => setTimeout(resolve, 200))
+        await new Promise(resolve => setTimeout(resolve, 100))
       }
       
       setStatus('success')
