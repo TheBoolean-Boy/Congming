@@ -22,7 +22,7 @@ export default function Features() {
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">
                             <LaptopMinimalCheck  className=' size-4'/>
-                            <h3 className="text-sm font-medium">Powerful</h3>
+                            <h3 className="text-sm font-medium">Intelligent</h3>
                         </div>
                         <p className="text-sm">Ask any question about your codebase and get the most perfect and relevant answer.</p>
                     </div>
@@ -46,7 +46,7 @@ export default function Features() {
 
                             <h3 className="text-sm font-medium">Fast</h3>
                         </div>
-                        <p className="text-sm">Lightning fast response time of agents and pipelines powered by Cerebrus inferencing.</p>
+                        <p className="text-sm">Lightning fast response time of agents and pipelines powered by Cerebras inferencing.</p>
                     </div>
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">

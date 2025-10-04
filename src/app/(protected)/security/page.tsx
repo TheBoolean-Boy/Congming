@@ -2,7 +2,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Code, Search, CheckCircle, XCircle } from 'lucide-react'
+import { Code, Search, CheckCircle, XCircle, Shield } from 'lucide-react'
 import { scanCodebase } from './security'
 import useProject from '@/hooks/use-project'
 import { toast } from 'sonner'
@@ -51,7 +51,7 @@ const CodebaseScanCard = () => {
     <Card className='col-span-2 flex flex-col items-center justify-center py-4'>
       {!isScanning && (
         <>
-          <Code className="h-10 w-10 animate-bounce text-cyan-600" />
+          <Shield className="h-10 w-10 animate-bounce text-black" />
           <h3 className="mt-1 text-sm font-semibold text-gray-900">
             Scan Codebase
           </h3>
@@ -78,20 +78,20 @@ const CodebaseScanCard = () => {
               <path
                 d="m18,2.0845 a 15.9155,15.9155 0 0,1 0,31.831 a 15.9155,15.9155 0 0,1 0,-31.831"
                 fill="none"
-                stroke="#e5e7eb"
+                stroke="#99999"
                 strokeWidth="3"
               />
               <path
                 d="m18,2.0845 a 15.9155,15.9155 0 0,1 0,31.831 a 15.9155,15.9155 0 0,1 0,-31.831"
                 fill="none"
-                stroke="#2563eb"
+                stroke="#0a0a0a"
                 strokeWidth="3"
                 strokeDasharray={`${progress}, 100`}
                 strokeLinecap="round"
               />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-sm font-semibold text-cyan-600">{progress}%</span>
+              <span className="text-sm font-semibold text-black">{progress}%</span>
             </div>
           </div>
           

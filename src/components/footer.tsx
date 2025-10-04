@@ -14,6 +14,14 @@ const links = [
         title: 'FAQs',
         href: '/#faq',
     },
+    {
+        title: 'Dashboard',
+        href: '/dashboard',
+    },
+    {
+        title: 'Projects',
+        href: '/create',
+    },
     
 ]
 
