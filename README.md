@@ -1,5 +1,12 @@
 ﻿# Introduction
 Congming is a super useful agentic codebase interaction and intelligence platform. It is created to help developers interact with not so familiar or newer codebases with ease and speed. For founders with small, fast and hard teams it is very useful since it can sigficantly reduce the project onboarding time for new hires. For Developers congming can will drastically reduce the time require get familiar and make intial interactions with codebases. It has lightning fast response time across all pipelines and highly sophisticated agentic workflows thanks to **Cerebras** cloud inferencing sdk and **Llama** models. 
+Live Link: [CongmingAI](https://congming-ai.vercel.app)
+
+## screenshots of congming in action
+<img width="1892" height="863" alt="Screenshot 2025-10-04 121646" src="https://github.com/user-attachments/assets/35023165-8c0b-42dc-9256-3eba94e790dc" />
+<img width="1919" height="860" alt="Screenshot 2025-10-04 121321" src="https://github.com/user-attachments/assets/df251b27-2537-4f1f-b6fb-5443a4660bfe" />
+<img width="1917" height="867" alt="Screenshot 2025-10-04 121515" src="https://github.com/user-attachments/assets/c75e2db1-7cd3-40b0-9af7-ca6e213fa085" />
+<img width="1919" height="879" alt="Screenshot 2025-10-04 121622" src="https://github.com/user-attachments/assets/346e635e-ff59-4741-896b-ecca95d13f8d" />
 
 ### Live Link: [CongmingAI](https://congming-ai.vercel.app)
 
