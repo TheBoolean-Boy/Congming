@@ -3,14 +3,6 @@ Congming is a super useful agentic codebase interaction and intelligence platfor
 
 ### Live Link: [CongmingAI](https://congming-ai.vercel.app)
 
-## screenshots of congming in action
-<img width="1892" height="863" alt="Screenshot 2025-10-04 121646" src="https://github.com/user-attachments/assets/35023165-8c0b-42dc-9256-3eba94e790dc" />
-<img width="1919" height="860" alt="Screenshot 2025-10-04 121321" src="https://github.com/user-attachments/assets/df251b27-2537-4f1f-b6fb-5443a4660bfe" />
-<img width="1917" height="867" alt="Screenshot 2025-10-04 121515" src="https://github.com/user-attachments/assets/c75e2db1-7cd3-40b0-9af7-ca6e213fa085" />
-<img width="1919" height="879" alt="Screenshot 2025-10-04 121622" src="https://github.com/user-attachments/assets/346e635e-ff59-4741-896b-ecca95d13f8d" />
-
-### Live Link: [CongmingAI](https://congming-ai.vercel.app)
-
 ## Screenshots of congming in action
 <img width="1892" height="863" alt="Screenshot 2025-10-04 121646" src="https://github.com/user-attachments/assets/35023165-8c0b-42dc-9256-3eba94e790dc" />
 <img width="1919" height="860" alt="Screenshot 2025-10-04 121321" src="https://github.com/user-attachments/assets/df251b27-2537-4f1f-b6fb-5443a4660bfe" />
