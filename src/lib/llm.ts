@@ -32,7 +32,7 @@ export const aiCerebrusLlamaSummariseCommit = async (diff: string) => {
     ],
     model: 'qwen-3-235b-a22b-thinking-2507',
     stream: false,
-    max_completion_tokens: 7000,
+    max_completion_tokens: 64000,
     temperature: 0.6,
     top_p: 0.9,
     // reasoning_effort: "medium"
