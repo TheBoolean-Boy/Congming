@@ -52,7 +52,7 @@ Go through the codebase and find the files which can be refactored by writing be
     SELECT "fileName", "sourceCode", "summary",
     1 - ("summaryEmbedding" <=> ${vectorQuery}::vector) AS similarity
     FROM "SourceCodeEmbedding"
-    WHERE 1 - ("summaryEmbedding" <=> ${vectorQuery}::vector) > 0.4
+    WHERE 1 - ("summaryEmbedding" <=> ${vectorQuery}::vector) > 0.5
     AND "projectId" = ${projectId}
     ORDER BY similarity DESC
     LIMIT 5
@@ -75,7 +75,8 @@ Go through the codebase and find the files which can be refactored by writing be
 
   try {
     const schemaCompletion: any = await cerebras.chat.completions.create({
-      model: 'llama3.3-70b',
+      // model: 'llama3.3-70b',
+      model: 'qwen-3-coder-480b',
       messages: [
         {
           role: 'system',
