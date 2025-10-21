@@ -1,82 +1,82 @@
-"use server"
+"use server";
 
-import { generateEmbedding } from '@/lib/llm'
-import { db } from "@/server/db";
-import Cerebras from "@cerebras/cerebras_cloud_sdk";
+import { generateEmbedding } from '@/lib/llm';
+import { db } from '@/server/db';
+import Cerebras from '@cerebras/cerebras_cloud_sdk';
 
 const cerebras = new Cerebras({
   apiKey: process.env.CEREBRAS_API_KEY
-})
+});
 
 type Refactor = {
-  filepath: string
-  refactor: string
-}
+  filepath: string;
+  refactor: string;
+};
 
 const refactorSchema = {
-  type: "object",
+  type: 'object',
   properties: {
     refactors: {
-      type: "array",
+      type: 'array',
       items: {
-        type: "object",
+        type: 'object',
         properties: {
-          filepath: { type: "string" },
-          refactor: { type: "string" }
+          filepath: { type: 'string' },
+          refactor: { type: 'string' }
         },
-        required: ["filepath", "refactor"]
+        required: ['filepath', 'refactor']
       }
     }
   },
-  required: ["refactors"],
+  required: ['refactors'],
   additionalProperties: false
 };
 
-
 function estimateTokens(text: string): number {
-  return Math.ceil(text.length / 4) // < Actually here I am calculating approximate number of tokens >
+  // Approximate token count by dividing character count by 4
+  return Math.ceil(text.length / 4);
 }
 
 export async function refactorCodebase(githubUrl: string, projectId: string) {
   const question = `
 Go through the codebase and find the files which can be refactored by writing better code. Only prefer the files which are written very badly and refactor them in a way that it will be worth. if you aren't sure about dependecies then be careful not to break the application with the refactor
-`
+`;
 
-  const embeddings = await generateEmbedding(question)
-  if (!embeddings || embeddings.length === 0) throw new Error("Failed to get embeddings")
+  const embeddings = await generateEmbedding(question);
+  if (!embeddings || embeddings.length === 0) {
+    throw new Error('Failed to get embeddings');
+  }
 
-  const queryVector = embeddings[0]?.values
-  const vectorQuery = `[${queryVector?.join(',')}]`
+  const queryVector = embeddings[0]?.values;
+  const vectorQuery = `[${queryVector?.join(',')}]`;
 
   const result = await db.$queryRaw`
     SELECT "fileName", "sourceCode", "summary",
     1 - ("summaryEmbedding" <=> ${vectorQuery}::vector) AS similarity
     FROM "SourceCodeEmbedding"
-    WHERE 1 - ("summaryEmbedding" <=> ${vectorQuery}::vector) > 0.5
+    WHERE 1 - ("summaryEmbedding" <=> ${vectorQuery}::vector) > 0.4
     AND "projectId" = ${projectId}
     ORDER BY similarity DESC
     LIMIT 5
-  ` as { fileName: string; sourceCode: string; summary: string }[]
+  ` as { fileName: string; sourceCode: string; summary: string }[];
 
-  console.log(`<----------------------------->`)
-  // console.log(result)
+  console.log(`<----------------------------->`);
 
-  let context = ''
-  let tokensUsed = 0
-  const MAX_TOKENS = 65000
+  let context = '';
+  let tokensUsed = 0;
+  const MAX_TOKENS = 65000;
 
   for (const doc of result) {
-    const snippet = `source: ${doc.fileName}\ncode content: ${doc.sourceCode}\nsummary of file: ${doc.summary}\n\n`
-    const snippetTokens = estimateTokens(snippet)
-    if (tokensUsed + snippetTokens > MAX_TOKENS) break
-    context += snippet
-    tokensUsed += snippetTokens
+    const snippet = `source: ${doc.fileName}\ncode content: ${doc.sourceCode}\nsummary of file: ${doc.summary}\n\n`;
+    const snippetTokens = estimateTokens(snippet);
+    if (tokensUsed + snippetTokens > MAX_TOKENS) break;
+    context += snippet;
+    tokensUsed += snippetTokens;
   }
 
   try {
     const schemaCompletion: any = await cerebras.chat.completions.create({
-      // model: 'llama3.3-70b',
-      model: 'qwen-3-coder-480b',
+      model: 'llama3.3-70b',
       messages: [
         {
           role: 'system',
@@ -110,19 +110,7 @@ Below is an example of how the output should be, note that this just an example 
     {
   //Donot include the below example in the output
       "filepath": "backend/src/lib/db.js",
-      "refactor": "import mongoose from 'mongoose';
-       const connectDB = async () => { 
-        try {   
-         await mongoose.connect(process.env.MONGO_URI, {    
-          useNewUrlParser: true,     
-          useUnifiedTopology: true,    
-         });   
-        console.log('MongoDB connected');  
-      } catch (err) {    
-       console.error('DB connection error:', err);   
-        process.exit(1);  
-      }};
-      export default connectDB;"
+      "refactor": "import mongoose from 'mongoose';\n       const connectDB = async () => { \n        try {   \n         await mongoose.connect(process.env.MONGO_URI, {    \n          useNewUrlParser: true,     \n          useUnifiedTopology: true,    \n         });   \n        console.log('MongoDB connected');  \n      } catch (err) {    \n       console.error('DB connection error:', err);   \n        process.exit(1);  \n      }};\n      export default connectDB;"
     }
   ]
 }
@@ -140,7 +128,6 @@ AI will never produce refactored code that will break or could potentially chang
 AI will only produce minor helpful better practice refactor in the context files.
 AI will only refactor the code file inside the context block.
 `
-
         }
       ],
       response_format: {
@@ -151,30 +138,19 @@ AI will only refactor the code file inside the context block.
           schema: refactorSchema
         }
       }
-    })
+    });
 
-    
-
-    const schemaRefactorDataResponse = JSON.parse(schemaCompletion.choices[0].message.content)
-    const schemaRefactorData: Refactor[] = schemaRefactorDataResponse.refactors.map((r:any) => ({
+    const schemaRefactorDataResponse = JSON.parse(schemaCompletion.choices[0].message.content);
+    const schemaRefactorData: Refactor[] = schemaRefactorDataResponse.refactors.map((r: any) => ({
       filepath: r.filepath,
       refactor: r.refactor
-    }))
+    }));
 
-    // const codeFile = schemaRefactorData[1]!.refactor
-    // const filepath = schemaRefactorData[1]!.filepath
-    // console.log(JSON.parse(codeFile))
-    // console.log(`File Path ${filepath}`)
-    // console.log(`source Code ${codeFile}`)
-    console.log(schemaRefactorData)
-    return schemaRefactorData
+    console.log(schemaRefactorData);
+    return schemaRefactorData;
 
   } catch (err) {
-    console.error("Error while scanning or creating issues:", err)
+    console.error('Error while scanning or creating issues:', err);
+    return [];
   }
 }
-
-
-
-
-
