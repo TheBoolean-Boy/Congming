@@ -108,6 +108,6 @@ The recorded meeting audio is uploaded to firebase. The firebase webhook sends b
 
 ## Usage
 
-Check out the usage here: [Demo Video](https://www.youtube.com/@sy667wh/videos)
+Check out the usage here: [Demo Video](https://www.youtube.com/@sychiePookie/videos)
 
 
