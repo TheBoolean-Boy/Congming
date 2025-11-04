@@ -94,8 +94,8 @@ Ignore secured API keys like process.env.KEY_NAME.
 
   try {
     const schemaCompletion: any = await cerebras.chat.completions.create({
-      // model: 'gpt-oss-120b',
-      model: 'zai-glm-4.6',
+      model: 'gpt-oss-120b',
+      // model: 'zai-glm-4.6',
       messages: [
         {
           role: 'system',
