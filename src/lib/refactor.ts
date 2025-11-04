@@ -76,7 +76,7 @@ Go through the codebase and find the files which can be refactored by writing be
   try {
     const schemaCompletion: any = await cerebras.chat.completions.create({
       // model: 'llama3.3-70b',
-      model: 'qwen-3-coder-480b',
+      model: 'zai-glm-4.6',
       messages: [
         {
           role: 'system',
